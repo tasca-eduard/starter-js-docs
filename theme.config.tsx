@@ -4,10 +4,10 @@ import { DocsThemeConfig } from 'nextra-theme-docs'
 const config: DocsThemeConfig = {
   logo: <span>Starter JS</span>,
   project: {
-    link: 'https://github.com/Zoli-88/form',
+    link: 'https://github.com/tasca-eduard/starter-js-docs',
   },
   footer: {
-    text: 'Nextra Docs Template',
+    text: 'Started JS Docs',
   },
 }
 

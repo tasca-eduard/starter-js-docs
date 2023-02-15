@@ -1,0 +1,94 @@
+# Creating the HTML Page
+
+We'll be going section to section in order to understand each part. First, let's get used to the overall file.
+
+## Overview
+
+Click on the **copy code** on the top right side of the preview to add it in your editor.
+
+```html filename="index.html" copy
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hubballi&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css">
+  <title>JSONPlaceholder</title>
+</head>
+<body>
+  <div class="container">
+    <h1>JSONPlaceholder API</h1>
+    <small>Learning how to use an API</small> <br> <br>
+    <nav> 
+      <button onclick="renderPosts()"> 
+        <span>Get all posts</span> 
+      </button> 
+      <button onclick="renderUsers()"> 
+        <span>Get all users</span> 
+      </button>
+    </nav>
+    <nav>
+      <form onsubmit="renderPostsByTtile(event)"> 
+        <label> 
+          <span>Search Post</span> 
+          <input 
+            type="search" 
+            name="searchTitle" 
+            id="post"
+            placeholder="Find post by title"
+          > 
+        </label> 
+        <button type="submit"> 
+          <span>Submit</span> 
+        </button>
+      </form>
+      <form onsubmit="renderUsersByName(event)"> 
+        <label> 
+          <span>Search User</span> 
+          <input 
+            type="search" 
+            name="searchUser" 
+            id="user"
+            placeholder="Find user by username"
+          > 
+        </label> 
+        <button type="submit"> 
+          <span>Submit</span> 
+        </button>
+      </form>
+    </nav>
+  </div>
+  <div class="container">
+    <p id="message">Please select a topic</p>
+    <div id="posts" class="list"></div>
+    <div id="users" class="list"></div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/components.js"></script>
+</body>
+</html>
+```
+Now let's separate each section.
+
+## Content
+
+Here we are going to dynamically insert / delete DOM elements using JS.  
+**id="message"** contains the response of the selected request. Think of it as a feedback from the **server** (backend) to the **client** (frontend). By default, the website will ask us to select a topic, meaning the type of request we'll want to make.  
+**id="posts"** and **id="users"** are our main lists that can be dynamically updated. In this case, our entities are **posts** and **users**.
+
+```html
+<div class="container">
+  <p id="message">Please select a topic</p>
+  <div id="posts" class="list"></div>
+  <div id="users" class="list"></div>
+</div>
+```
+
