@@ -1,13 +1,13 @@
 {
   "index": "Introduction",
-  "html": "HTML Page",
+  "hello": "Hello title",
   "advanced": "Advanced (A Folder)",
   "about": {
     "title": "About",
     "type": "page"
   },
   "contact": {
-    "title": "Contact ↗",
+    "title": "Contact123 ↗",
     "type": "page",
     "href": "https://twitter.com/shuding_",
     "newWindow": true 
