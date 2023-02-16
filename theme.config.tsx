@@ -13,6 +13,9 @@ const config: DocsThemeConfig = {
   },
   feedback: {
     useLink: () => `${GITHUB_URL}/issues/new?title=${useConfig().title}: Issue / Question`
+  },
+  editLink: {
+    component: undefined
   }
 }
 
