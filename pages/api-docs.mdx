@@ -44,7 +44,7 @@ async function editPost(postTitle, postTitleId) {
       title: postTitle
     })
   })
-  const post = response.json();
+  const post = await response.json();
 
   return post
 }
