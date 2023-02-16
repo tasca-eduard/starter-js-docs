@@ -145,3 +145,13 @@ For each input, the `name` attribute is the most important as this will be used 
   </form>
 </nav>
 ```
+
+## Adding scripts
+Right before the end of the `body` tag, we add the needed scripts to make everything functional.  
+This is a common approach to add JS files. We basically wait for the whole page to be fully loaded so that the JS will be able to select elements and attach events.
+
+```html
+<script src="js/api.js"></script>
+<script src="js/render.js"></script>
+<script src="js/components.js"></script>
+```
