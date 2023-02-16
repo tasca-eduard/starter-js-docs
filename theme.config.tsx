@@ -6,7 +6,7 @@ const GITHUB_URL = "https://github.com/tasca-eduard/starter-js-docs";
 const config: DocsThemeConfig = {
   logo: <span>Starter JS</span>,
   project: {
-    link: 'https://github.com/tasca-eduard/starter-js-docs',
+    link: GITHUB_URL,
   },
   footer: {
     text: 'Started JS Docs',

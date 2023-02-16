@@ -81,8 +81,8 @@ Now let's separate each section.
 ## Content
 
 Here we are going to dynamically insert / delete DOM elements using JS.  
-**id="message"** contains the response of the selected request. Think of it as a feedback from the **server** (backend) to the **client** (frontend). By default, the website will ask us to select a topic, meaning the type of request we'll want to make.  
-**id="posts"** and **id="users"** are our main lists that can be dynamically updated. In this case, our entities are **posts** and **users**.
+`id="message"` contains the response of the selected request. Think of it as a feedback from the **server** (backend) to the **client** (frontend). By default, the website will ask us to select a topic, meaning the type of request we'll want to make.  
+`id="posts"` and `id="users"` are our main lists that can be dynamically updated. In this case, our entities are `Post` and `User`.
 
 ```html
 <div class="container">
@@ -92,3 +92,56 @@ Here we are going to dynamically insert / delete DOM elements using JS.
 </div> 
 ```
 
+## Render all \<Entity>s
+This section handles the **rendering** of each list of data from a specific entity. We attached an `onclick` event to each button to which we pass a function named as `render<entity>s()`.  
+**Note**: added plurar notation *s*.
+
+```html
+<nav> 
+  <button onclick="renderPosts()"> 
+    <span>Get all posts</span> 
+  </button> 
+  <button onclick="renderUsers()"> 
+    <span>Get all users</span> 
+  </button>
+</nav>
+```
+
+## Render all \<Entity>s by \<query>
+This section handles the **rendering** of each list of data from a specific entity by looking for a property value.  
+For `posts` we search by `title`.  
+For `users` we search by `username`.  
+For each input, the `name` attribute is the most important as this will be used in JS to extract the value.
+
+```html
+<nav>
+  <form onsubmit="renderPostsByTtile(event)"> 
+    <label> 
+      <span>Search Post</span> 
+      <input 
+        type="search" 
+        name="searchTitle" 
+        id="post"
+        placeholder="Find post by title"
+      > 
+    </label> 
+    <button type="submit"> 
+      <span>Submit</span> 
+    </button>
+  </form>
+  <form onsubmit="renderUsersByName(event)"> 
+    <label> 
+      <span>Search User</span> 
+      <input 
+        type="search" 
+        name="searchUser" 
+        id="user"
+        placeholder="Find user by username"
+      > 
+    </label> 
+    <button type="submit"> 
+      <span>Submit</span> 
+    </button>
+  </form>
+</nav>
+```
