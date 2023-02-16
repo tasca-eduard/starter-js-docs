@@ -66,3 +66,16 @@ const BASE_API = "https://jsonplaceholderawesome.typicode.com";
 ```
 
 Now every `endpointUrl` in our API calls will be up to date.
+
+
+## List all [Entity]s
+
+```js
+async function list[Entity]s() {
+  let endpointUrl = `${BASE_API}/${[ENTITY]_API}`;
+  const response = await fetch(endpointUrl);
+  const posts = await response.json();
+ 
+  return posts
+}
+```
