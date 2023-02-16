@@ -49,3 +49,20 @@ async function editPost(postTitle, postTitleId) {
   return post
 }
 ```
+
+## Constants
+In order to be more flexible or to change a value in the whole project much faster, it's recommended to use constants that will be used in all of our functions.  
+
+```js
+const BASE_API = "https://jsonplaceholder.typicode.com";
+const POSTS_API = "posts";
+const USERS_API = "users";
+```
+
+Let's say that JSONPlaceholder will change their url to *"jsonplaceholderawesome"*, then we can easily change our `BASE_API` constant like below:
+
+```js
+const BASE_API = "https://jsonplaceholderawesome.typicode.com";
+```
+
+Now every `endpointUrl` in our API calls will be up to date.
