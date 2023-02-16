@@ -79,3 +79,20 @@ async function list[Entity]s() {
   return posts
 }
 ```
+
+## List all [Entity]s by [query]
+
+```js {1, 4, 5, 6}
+async function list[Entity]sBy[Query]([query]) {
+  let endpointUrl = `${BASE_API}/${[ENTITY]_API}`;
+  
+  if ([query]) {
+    endpointUrl += `?title=${[query]}`
+  }
+  
+  const response = await fetch(endpointUrl);
+  const posts = await response.json();
+
+  return posts
+}
+```
