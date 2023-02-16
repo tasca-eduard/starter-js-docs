@@ -1,6 +1,7 @@
 {
   "index": "Introduction",
-  "html": "HTML Page",
+  "html-docs": "HTML Docs",
+  "api-docs": "API Docs",
   "advanced": "Advanced (A Folder)",
   "about": {
     "title": "About",
