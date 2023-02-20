@@ -101,3 +101,24 @@ async function list[Entity]sBy[Query]([query]) {
   return posts
 }
 ```
+
+## Edit [Entity]
+In order to edit an entity it is necessary to have the entity `id` and the value of the property that we are going to change, in our case `title`. The method of this type of request is `PATCH`, meaning that we want to make a partial update.
+
+**NOTE**: To not be mistaken with `PUT` because that should replace the whole entity.  
+
+In response of this request, we will get back the updated entity. We can not change the JSONPlaceholder DB, so the data won't be modified when we request all entities again. We can only "imagine" it is being changed. We can do **persistent local data** if we want, but we will keep that for later or in another article.
+
+```js
+async function editPost(postTitle, postTitleId) {
+  const response = await fetch(`${BASE_API}/${POSTS_API}/${postTitleId}`, {
+    method: "PATCH",
+    body: JSON.stringify({
+      title: postTitle
+    })
+  })
+  const post = await response.json();
+
+  return post
+}
+```
