@@ -1,9 +1,12 @@
 # Creating the API Calls
 We'll be going section to section in order to understand each part. First, let's get used to the overall file.    
-**NOTE**: Please read about the *"Listing all resources"* and *"Updating a resource"* examples that JSONPlaceholder provides (if you have not already): https://jsonplaceholder.typicode.com/guide/
+**NOTE**:  
+Please read about the *"Listing all resources"* and *"Updating a resource"* examples that [JSONPlaceholder](https://jsonplaceholder.typicode.com/guide/) provides (if you have not already).  
+Also, check the [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API). We will be using [Async-Await](https://dmitripavlutin.com/javascript-fetch-async-await/) method because the code looks much cleaner and readable. Using chaining with `then` might make use fall into a trap called [Callback Hell](https://www.scaler.com/topics/callback-hell-in-javascript/).
 
 
 ## Overview
+For each function, we return the data response so we can use it in the render methods.  
 Click on the **copy** code on the top right side of the preview to add it in your editor.
 
 ```js filename="api.js" copy
@@ -69,6 +72,7 @@ Now every `endpointUrl` in our API calls will be up to date.
 
 
 ## List all [Entity]s
+Listing all data for an entity is pretty straightforward. We just have to pick our entity, let's say `post`. We use our constant `POSTS_API` and concatenate it to the `BASE_API` and we get the following `endpointUrl`. Don't forget the `async` and `await` keywords.
 
 ```js
 async function list[Entity]s() {
@@ -81,6 +85,7 @@ async function list[Entity]s() {
 ```
 
 ## List all [Entity]s by [query]
+You might have noticed the above function was incomplete compared to the overview file at the beginning. That's because, we can easily add a query param value to search by title in our case. We pass a parameter to our function and add the `?` mark in order to add the value to our endpointUrl. The highlighted code should be added.
 
 ```js {1, 4, 5, 6}
 async function list[Entity]sBy[Query]([query]) {
