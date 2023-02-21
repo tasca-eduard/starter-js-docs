@@ -2,6 +2,7 @@
   "index": "Introduction",
   "html-docs": "HTML Docs",
   "api-docs": "API Docs",
+  "render-docs": "Render Docs",
   "advanced": "Advanced (A Folder)",
   "about": {
     "title": "About",
