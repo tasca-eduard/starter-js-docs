@@ -107,7 +107,7 @@ async function renderEntities(searchQuery) {
   try {
     const entities = await listEntities(searchQuery);
     
-    clearContent();
+    clearContent(); 
  
     entities.forEach((entity) => {
       $entityList.innerHTML += entityComponent(entity)

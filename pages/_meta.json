@@ -3,7 +3,7 @@
   "html-docs": "HTML Docs",
   "api-docs": "API Docs",
   "render-docs": "Render Docs",
-  "advanced": "Advanced (A Folder)",
+  "component-docs": "Component Docs",
   "about": {
     "title": "About",
     "type": "page"
