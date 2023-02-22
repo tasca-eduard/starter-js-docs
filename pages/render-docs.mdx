@@ -10,7 +10,7 @@ You can view the `try` block as the "optimistic" set of instructions and the `ca
 
 
 We are going to use [Element.innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) because in the end we will basically replace the content with other data every time. We won't add or update a single node because we can't update the JSONPlaceholder Database.
-
+ 
 **NOTE**: There are other ways to make changes in the DOM tree:
 * [Node.appendChild()](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild) - Unlike this method, [Element.append()](https://developer.mozilla.org/en-US/docs/Web/API/Element/append) method supports multiple arguments and appending strings. You can prefer using it if your node is an element.
 * [Node.insertBefore()](https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore) - There is no insertAfter() method. It can be emulated by combining the insertBefore method with [Node.nextSibling()](https://developer.mozilla.org/en-US/docs/Web/API/Node/nextSibling). 
