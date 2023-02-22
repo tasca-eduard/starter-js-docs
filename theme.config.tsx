@@ -16,7 +16,12 @@ const config: DocsThemeConfig = {
   },
   editLink: {
     component: undefined
-  }
+  },
+  useNextSeoProps() {
+    return {
+      titleTemplate: "%s"
+    }
+  },
 }
 
 export default config;
