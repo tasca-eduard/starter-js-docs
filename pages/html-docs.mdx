@@ -92,7 +92,7 @@ Here we are going to dynamically insert / delete DOM elements using JS.
 </div> 
 ```
 
-## Render all [Entity]s
+## Search all Entities
 This section handles the **rendering** of each list of data from a specific entity. We attached an `onclick` event to each button to which we pass a function named as `render[Entity]s()`.  
 **Note**: added plurar notation *s*.
 
@@ -107,11 +107,13 @@ This section handles the **rendering** of each list of data from a specific enti
 </nav>
 ```
 
-## Render all [Entity]s by [query]
-This section handles the **rendering** of each list of data from a specific entity by looking for a property value. We name our functions as `render[Entity]sBy[QueryParam]()`. In our case, `QueryParam` can be `Title` or `Username`.  
+## Render all Entities by Query
+This section handles the **rendering** of each list of data from a specific entity by looking for a property value. We name our functions as `renderEntitiesByQuery`. In our case, `Query` can be `Title` or `Username`.  
 For `posts` we search by `title`.  
 For `users` we search by `username`.  
 For each input, the `name` attribute is the most important as this will be used in JS to extract the value.
+
+**NOTE**: Don't forget to pass the `event` so we can prevent the default interaction of the form.
 
 ```html
 <nav>

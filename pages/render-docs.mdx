@@ -3,31 +3,32 @@ We'll be going section by section in order to understand each part. First, let's
 
 ## Overview  
 Click on the **copy** code on the top right side of the preview to add it in your editor.  
-Each function will update the `innerHTML` of each content element prepared in the [Content Section](html-docs#content)
+Each function will update the `innerHTML` of each content element prepared in the [Content Section](html-docs#content).  
 
+We will add a `try-catch` block in order to be able to catch the error without using the `then` chaining method.  
+You can view the `try` block as the "optimistic" set of instructions and the `catch` block is whatever error is being thrown inside the `try` block - including the errros inside the functions, like `listEntities()` or `clearContent()`.  We only be printing the error in the console for now.
+
+
+We are going to use [Element.innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) because in the end we will basically replace the content with other data every time. We won't add or update a single node because we can't update the JSONPlaceholder Database.
+
+**NOTE**: There are other ways to make changes in the DOM tree:
+* [Node.appendChild()](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild) - Unlike this method, [Element.append()](https://developer.mozilla.org/en-US/docs/Web/API/Element/append) method supports multiple arguments and appending strings. You can prefer using it if your node is an element.
+* [Node.insertBefore()](https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore) - There is no insertAfter() method. It can be emulated by combining the insertBefore method with [Node.nextSibling()](https://developer.mozilla.org/en-US/docs/Web/API/Node/nextSibling). 
+* [Node.insertAdjacentHTML()](https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML) - inserts the resulting nodes into the DOM tree at a specified position 
 
 ```js filename="render.js" copy
 
-// DOM elements
 const $postList = document.querySelector("#posts");
 const $userList = document.querySelector("#users");
 const $message = document.querySelector("#message");
 
-// States
-let _posts = [];
-_posts = JSON.parse(localStorage.getItem("posts")) || [];
-
-// Functions
 async function renderPosts(queryTitle) {
   try {
     const posts = await listPosts(queryTitle);
     
-    if (_posts.length === 0 || queryTitle) {
-      _posts = posts
-    }
+    clearContent();
 
-    renderEmptyContent();
-    _posts.forEach((post) => {
+    posts.forEach((post) => {
       $postList.innerHTML += postCardComponent(post)
     })
   } catch (error) {
@@ -38,7 +39,9 @@ async function renderPosts(queryTitle) {
 async function renderUsers(queryUser) {
   try {
     const users = await listUsers(queryUser);
-    renderEmptyContent();
+
+    clearContent();
+
     users.forEach((user) => {
       $userList.innerHTML += userCardComponent(user)
     })
@@ -66,16 +69,92 @@ async function renderNewPosts(e) {
   const formData = new FormData(e.target);
   const postTitle = formData.get("postTitle");
   const postTitleId = formData.get("postId");
-  const updatedPost = await editPost(postTitle, postTitleId);
-  const postToReplaceIndex = _posts.findIndex((post => post.id === updatedPost.id));
-  _posts[postToReplaceIndex] = updatedPost;
-  localStorage.setItem("posts", JSON.stringify(_posts));
+
+  try {
+    const updatedPost = await editPost(postTitle, postTitleId);
+  } catch (error) {
+    console.log(error);    
+  }
+
   renderPosts();
 }
 
-function renderEmptyContent() {
-  $postList.innerHTML = '';
-  $userList.innerHTML = '';
-  $message.innerHTML = '';
+function clearContent() {
+  $postList.innerHTML = "";
+  $userList.innerHTML = "";
+  $message.innerHTML = "";
+}
+```
+
+## Clearing the DOM
+After getting all the data we need, we need to make sure to clear the lists and the message by using the `clearContent()` function. Otherwise we would append the new data to the previous data and creating a mess (you can try). We only want the new data.  
+
+We can simply clear the DOM by setting the `innerHTML` to an empty string. The string is parsed to HTML and as you can guess the result will be empty.
+
+```js
+function clearContent() {
+  $postList.innerHTML = "";
+  $userList.innerHTML = "";
+  $message.innerHTML = "";
+}
+```
+
+## Render all Entities
+For each entity we want to **append** to our `$entityList` by consecutively adding the same component with specific entity data with `Node.innerHTML += "<span>My awesome component</span>"`.
+ 
+```js
+async function renderEntities(searchQuery) {
+  try {
+    const entities = await listEntities(searchQuery);
+    
+    clearContent();
+ 
+    entities.forEach((entity) => {
+      $entityList.innerHTML += entityComponent(entity)
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+```
+
+## Render Entities by Query
+Quick reminder of the form(s) we are talking about: [Search all Entities by Query](/html-docs#render-all-entitys-by-query)
+
+We use the [FormData(myForm)](https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData) class to instantiate a data structure with all our `keys` and `values`. It's basically a [Map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) where you can get the value by specifing the key you are interested in with the `get("myInputName")` method.  
+
+Where `myForm` is `e.target`, meaning the form that has been submited and `myInputName` is the input `name` attribute value - these will be the keys in our Map.
+
+In the end, we call `renderEntities(searchQuery)`, but this time we add the search parameter. 
+
+```js
+function renderEntitiesByQuery(e) {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+  const searchQuery = formData.get("searchQuery");
+
+  renderEntities(searchQuery);
+}
+```
+
+## Render updated Entities
+Same as above, with the only difference that we **update** an entity. Now, because we can't actually update the JSONPlaceholder Database, we wont see any difference when we call `renderEntities()` again. As long as you get back the updated entity in the response, you should be good.
+
+```js
+async function renderNewEntities(e) {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+  const entityQuery = formData.get("entityQuery");
+  const entityId = formData.get("entityId");
+ 
+  try {
+    const updatedPost = await editEntity(entityQuery, entityId);
+  } catch (error) {
+    console.log(error);    
+  }
+ 
+  renderEntities();
 }
 ```
