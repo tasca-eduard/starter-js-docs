@@ -22,6 +22,10 @@ const config: DocsThemeConfig = {
       titleTemplate: "%s"
     }
   },
+  banner: {
+    key: "0.1-release",
+    text: <span><i>Starter JS Docs</i> is in <strong>Alpha Release</strong>, anything can be changed at any time. <strong>Feedback</strong> is well appreciated.</span>
+  }
 }
 
 export default config;
