@@ -72,12 +72,12 @@ const BASE_API = "https://jsonplaceholderawesome.typicode.com";
 Now every `endpointUrl` in our API calls will be up to date.
 
 
-## List all [Entity]s
+## List all Entities
 Listing all data for an entity is pretty straightforward. We just have to pick our entity, let's say `post`. We use our constant `POSTS_API` and concatenate it to the `BASE_API` and we get the following `endpointUrl`. Don't forget the `async` and `await` keywords.
  
 ```js
 async function listEntities() {
-  let endpointUrl = `${BASE_API}/${[ENTITY]_API}`;
+  let endpointUrl = `${BASE_API}/${ENTITY_API}`;
   const response = await fetch(endpointUrl);
   const posts = await response.json();
  
@@ -90,7 +90,7 @@ You might have noticed the above function was incomplete compared to the overvie
 
 ```js {1, 4, 5, 6}
 async function listEntitiesByQuery(query) {
-  let endpointUrl = `${BASE_API}/${[ENTITY]_API}`;
+  let endpointUrl = `${BASE_API}/${ENTITY_API}`;
   
   if (query) {
     endpointUrl += `?title=${query}`
