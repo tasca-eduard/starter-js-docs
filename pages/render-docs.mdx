@@ -150,7 +150,7 @@ async function renderNewEntities(e) {
   const entityId = formData.get("entityId");
  
   try {
-    const updatedPost = await editEntity(entityQuery, entityId);
+    const updatedEntity = await editEntity(entityQuery, entityId);
   } catch (error) {
     console.log(error);    
   }

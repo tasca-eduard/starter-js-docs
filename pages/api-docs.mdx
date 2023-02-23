@@ -79,9 +79,9 @@ Listing all data for an entity is pretty straightforward. We just have to pick o
 async function listEntities() {
   let endpointUrl = `${BASE_API}/${ENTITY_API}`;
   const response = await fetch(endpointUrl);
-  const posts = await response.json();
+  const entities = await response.json();
  
-  return postsiu78897
+  return entities;
 }
 ```
 
@@ -97,9 +97,9 @@ async function listEntitiesByQuery(query) {
   }
   
   const response = await fetch(endpointUrl);
-  const posts = await response.json();
+  const entities = await response.json();
 
-  return posts
+  return entities;
 }
 ```
 
@@ -118,8 +118,8 @@ async function editEntity(entityQuery, entityId) {
       title: entityQuery
     })
   })
-  const post = await response.json();
+  const entity = await response.json();
 
-  return post
+  return entity;
 }
 ```
